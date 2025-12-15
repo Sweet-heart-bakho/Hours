@@ -75,6 +75,10 @@ public class UI {
         delete.setBounds(960, 240, 150, 40);
         mainFrame.add(delete);
 
+        JButton create = new JButton("Create");
+        create.setBounds(800, 290, 150, 40);
+        mainFrame.add(create);
+
         JButton copy = new JButton("Copy");
         copy.setBounds(800, 680, 150, 40);
         mainFrame.add(copy);
@@ -123,6 +127,21 @@ public class UI {
             public void actionPerformed(ActionEvent actionEvent) {
                 worker.getHours().remove(jlistMessages.getSelectedIndex());
                 listMessages.remove(jlistMessages.getSelectedIndex());
+            }
+        });
+
+        create.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                WorkedHours workedHours = new WorkedHours(correct.getText(), worker);
+                if (textBreak.getText() != null) {
+                    workedHours.setBreakHour(Integer.parseInt(textBreak.getText()));
+                }
+                worker.addHour(workedHours);
+                listMessages.removeAllElements();
+                for (WorkedHours hour : worker.getHours()) {
+                    listMessages.addElement(hourToString(hour));
+                }
             }
         });
 

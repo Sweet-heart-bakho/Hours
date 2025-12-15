@@ -35,7 +35,7 @@ public class Main {
         for (Map.Entry<String, List<String>> entry: hours.entrySet()) {
             Worker worker = new Worker(entry.getKey());
             for (String hour : entry.getValue()) {
-                WorkedHours workedHours = new WorkedHours(hour);
+                WorkedHours workedHours = new WorkedHours(hour, worker);
                 worker.addHour(workedHours);
             }
             workers.add(worker);

@@ -27,6 +27,9 @@ public class DataBase {
         }
 
         for (Message message : messages) {
+            if ("FARHOD ALI".equals(message.from) || "Sayid".equals(message.from)) {
+                continue; // пропускаем это сообщение
+            }
             for (String line : message.text) {
                 if ((line.contains("/") || line.contains(".")) && containsNumbers(line) && !line.matches(".*https\\b.*") && line.length() <= 150) {
                     String[] lines = line.split("\\r?\\n"); // Разделить текст на строки

@@ -32,8 +32,16 @@ public class Worker {
             schedule.put(hour.getDay(), hour.getFinal().toString());
         }
         int fk = schedule.firstKey();
+        System.out.println("Hours size " + hours.size());
 
-        if (fk < 16) {
+        if (fk < 16 && schedule.lastKey() > 16) {
+            System.out.println("1-31");
+            for (int i = 1; i < 32; i++) {
+                if (!schedule.containsKey(i)) {
+                    schedule.put(i, new Hour(0).toString());
+                }
+            }
+        } else if (fk < 16) {
             for (int i = 1; i < 17; i++) {
                 if (!schedule.containsKey(i)) {
                     schedule.put(i, new Hour(0).toString());
